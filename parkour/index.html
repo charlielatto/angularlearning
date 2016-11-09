@@ -27,27 +27,38 @@
 		li {
 			cursor:pointer
 		}
+		
+		.top-bar {
+			background: #5a2293;
+			margin-bottom:15px;
+			color: white;
+		}
+
 		</style>
 	</head>
 	<body ng-app="parkour" ng-controller="MainCtrl">
+	<div class="top-bar">
+			<div class="top-bar-left">
+				<h3 class="menu-text">{{title}}</h3>
+			</div>
+		</div>
 	<div class="row">
 	<div class="small-8 small-offset-2 column">
-		<h1>{{title}}</h1>
 		
 		<div class="row">
 			<div class="board callout column small-5">
 				<h4 class="boardtitle">Backlog</h4>
 				<ul id="backlog" class="connectedSort">
-					<li ng-class="applyPriority({{task.priority}})" ng-repeat="task in backlog | orderBy: 'priority'">
-						<span ng-click="popUp(task)">{{task.title}} - {{task.time}}hrs</span>
+					<li ng-click="popUp(task)" ng-class="applyPriority({{task.priority}})" ng-repeat="task in backlog | orderBy: 'priority'">
+						<span >{{task.title}} - {{task.time}}hrs</span>
 					</li>
 				</ul>
 			</div>
 			<div class="board callout column small-5 end">
 				<h4 class="boardtitle">Sprint {{sprintNum}}</h4>
 				<ul id="sprint" class="connectedSort">
-					<li  ng-class="applyPriority({{task.priority}})" ng-repeat="task in sprint | orderBy: 'priority'">
-						<span  ng-click="popUp(task)">{{task.title}} - {{task.time}}hrs</span>
+					<li  ng-click="popUp(task)" ng-class="applyPriority({{task.priority}})" ng-repeat="task in sprint | orderBy: 'priority'">
+						<span  >{{task.title}} - {{task.time}}hrs</span>
 					</li>
 				</ul>
 			</div>
