@@ -49,6 +49,7 @@ function($scope,sprint,backlog,setUp){
 		} );
 	};
 	
+	setUp.foundation();
 	$scope.initBacklogKanban();
 	
 	$scope.applyPriority = function(priority){
@@ -57,6 +58,25 @@ function($scope,sprint,backlog,setUp){
 	
 	$scope.popUp = function(task){
 		setUp.popUp(task);
+	};
+	
+	$scope.addPost = function() {
+		if(!$scope.title || $scope.title === ''){return;}
+		if ($scope.board === "sprint"){
+			$scope.sprint.push({
+				title: $scope.title,
+				priority:4,
+				time: $scope.time,
+			});
+		} else if ($scope.board === "backlog") {
+			$scope.backlog.push({
+				title: $scope.title,
+				priority:4,
+				time: $scope.time,
+			});
+		}
+		$scope.title = '';
+		$scope.time = '';
 	};
 }]);
 
@@ -87,6 +107,7 @@ function($scope,sprint,setUp){
 		} );
 	};
 	
+	setUp.foundation();
 	$scope.initSprintKanban();
 	
 	$scope.applyPriority = function(priority){
@@ -156,4 +177,8 @@ app.service('setUp',function(){
 	this.popUp = function(task){
 		alert(task.title);
 	};
+	
+	this.foundation = function(){
+		$(document).foundation();
+	}
 });
